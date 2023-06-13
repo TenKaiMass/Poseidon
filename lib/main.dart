@@ -4,9 +4,9 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/LoginPage.dart';
 import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/iphone-14-pro-1-compte-pro.dart';
+import 'package:myapp/page-1/AccountP.dart';
 
-import 'package:myapp/page-1/iphone-14-pro-1-accueil-.dart';
+import 'package:myapp/page-1/Acceuil.dart';
 
 void main() => runApp(MyApp());
 

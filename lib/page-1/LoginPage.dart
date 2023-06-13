@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/page-1/Acceuil.dart';
 
 class SceneLog extends StatelessWidget {
   @override
@@ -148,7 +149,13 @@ class SceneLog extends StatelessWidget {
 
                   GestureDetector(
                     onTap: () {
-                      // your function here
+                      // your function her
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Scene(),
+                        ),
+                      );
                     },
                     child:
                       Container(
