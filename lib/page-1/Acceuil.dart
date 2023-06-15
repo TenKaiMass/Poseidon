@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
+import '../models/user.dart';
 
 class AcceuilPage extends StatefulWidget {
   const AcceuilPage({Key? key}) : super(key: key);
@@ -29,7 +30,7 @@ class _AcceuilPageState extends State<AcceuilPage> {
       width: double.infinity,
       child: Stack(
         children: [
-          // cadre blanc
+          // cadre blanc feed
           Positioned(
             left: 1 * fem,
             top: 118 * fem,
@@ -49,18 +50,19 @@ class _AcceuilPageState extends State<AcceuilPage> {
                       ),
                     ],
                   ),
-                child: Container(
-                  alignment: AlignmentDirectional.center,
-                  child: Text('pas de recettes diponibles',
-                  style: SafeGoogleFont(
-                    'Comic Sans MS',
-                    fontSize: 14 * ffem,
-                    fontWeight: FontWeight.w700,
-                    height: 1.2575 * ffem / fem,
-                    color: Color.fromARGB(255, 0, 0, 0),
+                  child: Container(
+                    alignment: AlignmentDirectional.center,
+                    child: Text(
+                      'pas de recettes diponibles',
+                      style: SafeGoogleFont(
+                        'Comic Sans MS',
+                        fontSize: 14 * ffem,
+                        fontWeight: FontWeight.w700,
+                        height: 1.2575 * ffem / fem,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
+                    ),
                   ),
-                  ),
-                ),
                 ),
               ),
             ),
@@ -84,11 +86,9 @@ class _AcceuilPageState extends State<AcceuilPage> {
           ),
           // cadre free plan
           Positioned(
-            left: 39 * fem,
-            top: 64 * fem,
+            left: MediaQuery.of(context).size.width / 2 - (95 * fem) / 2,
+            top: 70,
             child: Container(
-              padding: EdgeInsets.fromLTRB(
-                  13 * fem, 1.88 * fem, 23 * fem, 1.12 * fem),
               width: 95 * fem,
               height: 27 * fem,
               decoration: BoxDecoration(
@@ -98,17 +98,17 @@ class _AcceuilPageState extends State<AcceuilPage> {
               ),
               child: Container(
                 // frame21yzk (29:54)
+                alignment: AlignmentDirectional.bottomEnd,
                 padding:
                     EdgeInsets.fromLTRB(0 * fem, 0 * fem, 8.39 * fem, 0 * fem),
                 width: double.infinity,
                 height: double.infinity,
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     // FREE PLAN
                     Container(
                       margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 16.39 * fem, 6 * fem),
+                          10 * fem, 3 * fem, 16.39 * fem, 6 * fem),
                       child: Text(
                         'Free',
                         style: SafeGoogleFont(
@@ -122,6 +122,19 @@ class _AcceuilPageState extends State<AcceuilPage> {
                     ),
                   ],
                 ),
+              ),
+            ),
+          ),
+          Positioned(
+            // group48095463i1r (1:363)
+            left: 346 * fem,
+            top: 70 * fem,
+            child: Align(
+              child: SizedBox(
+                width: 26.81 * fem,
+                height: 26.81 * fem,
+                child: Icon(Icons.notifications_outlined,
+                    size: 28 * fem, color: Colors.white),
               ),
             ),
           ),
@@ -215,10 +228,30 @@ class _AcceuilPageState extends State<AcceuilPage> {
                     Icons.add,
                     size: 28 * fem,
                     color: Colors.black,
-                    ),
                   ),
+                ),
               ),
             ),
+          ),
+          Positioned(
+            // ellipse14Nwe (29:170)
+            left: 320 * fem,
+            top: 147 * fem,
+            child: Align(
+                child: SizedBox(
+                    width: 56 * fem,
+                    height: 56 * fem,
+                    child: GestureDetector(
+                        onTap: () {
+                          // User.signOut();
+                        },
+
+                        child: Container(
+                            child: Icon(
+                          Icons.logout,
+                          size: 28 * fem,
+                          color: Colors.black,
+                        ))))),
           ),
         ],
       ),
