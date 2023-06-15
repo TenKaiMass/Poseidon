@@ -27,7 +27,7 @@ class _Log extends State<SceneLog> {
       stream: Auth(auth: FirebaseAuth.instance).authStateChanges,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return Scaffold();
+          return const AcceuilPage();
         } else {
           return const LoginPage();
         }
