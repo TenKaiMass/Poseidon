@@ -1,13 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
+
 import '../models/user.dart';
 
-
 class AcceuilPage extends StatefulWidget {
-  const AcceuilPage({Key? key}) : super(key: key);
+  final User user;
+  const AcceuilPage({Key? key, required this.user}) : super(key: key);
 
   @override
   State<AcceuilPage> createState() => _AcceuilPageState();
@@ -42,8 +43,7 @@ class _AcceuilPageState extends State<AcceuilPage> {
             ),
             child: Container(
               alignment: AlignmentDirectional.center,
-              child: Text(
-                'pas de recettes diponibles',
+              child: Text('Pas de contenu disponible pour le moment',
                 style: SafeGoogleFont(
                   'Comic Sans MS',
                   fontSize: getRelativeSize(context, 14 * ffem),
@@ -92,8 +92,7 @@ class _AcceuilPageState extends State<AcceuilPage> {
         ),
         child: Container(
           alignment: AlignmentDirectional.bottomEnd,
-          padding: EdgeInsets.fromLTRB(
-              0, 0, getRelativeSize(context, 8.39), 0),
+          padding: EdgeInsets.fromLTRB(0, 0, getRelativeSize(context, 8.39), 0),
           width: double.infinity,
           height: double.infinity,
           child: Row(
@@ -175,7 +174,7 @@ class _AcceuilPageState extends State<AcceuilPage> {
           height: getRelativeSize(context, 56),
           child: GestureDetector(
             onTap: () {
-              // User.signOut();
+              FirebaseAuth.instance.signOut();
             },
             child: Container(
               child: Icon(

@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../models/user.dart';
 import '../utils.dart';
+import 'Acceuil.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,6 +21,14 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _controllerPassword = TextEditingController();
 
   Future<void> signInWithEmailAndPassword() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
     try {
       await Auth(auth: FirebaseAuth.instance).signInWithEmailAndPassword(
         mail: _controllerEmail.text,
@@ -30,6 +39,7 @@ class _LoginPageState extends State<LoginPage> {
         errorMessage = e.message;
       });
     }
+    Navigator.pop(context);
   }
 
   Future<void> createUserWithEmailAndPassword() async {
@@ -113,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
         color: const Color(0xffffffff),
       ),
       obscuringCharacter: '*',
-      obscureText: title == 'Mot de passe'? true : false,
+      obscureText: title == 'Mot de passe' ? true : false,
     );
   }
 

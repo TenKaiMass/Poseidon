@@ -1,5 +1,3 @@
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
@@ -12,22 +10,21 @@ import '../models/user.dart';
 import 'LoginPage.dart';
 
 class SceneLog extends StatefulWidget {
-  const SceneLog({super.key});
+  const SceneLog({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _Log createState() => _Log();
+  _SceneLogState createState() => _SceneLogState();
 }
 
-class _Log extends State<SceneLog> {
-
+class _SceneLogState extends State<SceneLog> {
+  final auth = Auth(auth: FirebaseAuth.instance);
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: Auth(auth: FirebaseAuth.instance).authStateChanges,
+      stream: auth.authStateChanges,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return const AcceuilPage();
+          return  AcceuilPage(user: auth.currentUser!,);
         } else {
           return const LoginPage();
         }
@@ -35,4 +32,3 @@ class _Log extends State<SceneLog> {
     );
   }
 }
-
