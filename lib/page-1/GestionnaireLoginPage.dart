@@ -17,26 +17,18 @@ class SceneLog extends StatefulWidget {
 }
 
 class _SceneLogState extends State<SceneLog> {
-  Auth auth = Auth(auth: FirebaseAuth.instance);
-  User? currentUser;
-
-  @override
-  void initState() {
-    super.initState();
-    getCurrentUser();
-  }
-
-  void getCurrentUser() async {
-    final user = auth.currentUser;
-    if (user != null) {
-      setState(() {
-        currentUser = user;
-      });
-    }
-  }
-
+  final auth = Auth(auth: FirebaseAuth.instance);
   @override
   Widget build(BuildContext context) {
-    return currentUser != null ? AcceuilPage(user: currentUser!) : LoginPage();
+    return StreamBuilder(
+      stream: auth.authStateChanges,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return  AcceuilPage(user: auth.currentUser!,);
+        } else {
+          return const LoginPage();
+        }
+      },
+    );
   }
 }

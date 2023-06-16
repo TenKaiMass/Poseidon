@@ -20,24 +20,26 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
 
-  Future<void> signInWithEmailAndPassword(BuildContext context) async {
+  Future<void> signInWithEmailAndPassword() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
     try {
       await Auth(auth: FirebaseAuth.instance).signInWithEmailAndPassword(
         mail: _controllerEmail.text,
         mdp: _controllerPassword.text,
-      );
-          // Rediriger vers la User user = // Obtenez l'utilisateur connecté à partir de FirebaseAuth
-
-      // Rediriger vers la page d'accueil avec les informations de l'utilisateur
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => AcceuilPage(user: user)),
       );
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
       });
     }
+    Navigator.pop(context);
   }
 
   Future<void> createUserWithEmailAndPassword() async {
@@ -121,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
         color: const Color(0xffffffff),
       ),
       obscuringCharacter: '*',
-      obscureText: title == 'Mot de passe'? true : false,
+      obscureText: title == 'Mot de passe' ? true : false,
     );
   }
 

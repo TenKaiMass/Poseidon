@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Auth {
- // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
   final FirebaseAuth auth;
   Auth({required this.auth});
   User? get currentUser => auth.currentUser;
