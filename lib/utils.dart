@@ -1,6 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/page-1/Acceuil.dart';
+import 'package:myapp/page-1/Favoris.dart';
+import 'package:myapp/page-1/Message.dart';
+import 'package:myapp/page-1/Profile.dart';
+import 'package:myapp/page-1/Recherche.dart';
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   @override
@@ -82,43 +88,114 @@ TextStyle SafeGoogleFont(
 }
 
 
-class MyBNavBar extends StatefulWidget {
-  const MyBNavBar({super.key});
+
+class MyBottomNavigationBar extends StatefulWidget {
+  final User user;
+  final int selectedIndex;
+
+  const MyBottomNavigationBar({
+    Key? key,
+    required this.user,
+    required this.selectedIndex,
+  }) : super(key: key);
 
   @override
-  State<MyBNavBar> createState() => _MyBNavBarState();
+  _MyBottomNavigationBarState createState() => _MyBottomNavigationBarState();
 }
 
-class _MyBNavBarState extends State<MyBNavBar> {
+class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
+  late int _selectedIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.selectedIndex;
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => getPageByIndex(index),
+      ),
+    );
+  }
+
+  Widget getPageByIndex(int index) {
+    switch (index) {
+      case 0:
+        return AcceuilPage(user: widget.user, selectedIndex: index);
+      case 1:
+        return MessagePage(user: widget.user, selectedIndex: index);
+      case 2:
+        return RecherchePage(user: widget.user, selectedIndex: index);
+      case 3:
+        return FavorisPage(user: widget.user, selectedIndex: index);
+      case 4:
+        return ProfilePage(user: widget.user, selectedIndex: index);
+      default:
+        return AcceuilPage(user: widget.user, selectedIndex: index);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      items:  [
-        const BottomNavigationBarItem(icon: Icon(Icons.restaurant_menu,size: 30,), label: ''),
-        BottomNavigationBarItem(
-          icon: Image.asset(
-            'assets/page-1/images/uil-message-YpL.png',
-            width: 30,
-            height: 26,
-          ),
-          label: '',
+      items: [
+        _buildNavigationBarItem(
+          icon: Icons.restaurant_menu,
+          index: 0,
         ),
-        BottomNavigationBarItem(
-          icon: Image.asset(
-            'assets/page-1/images/gg-menu-grid-o-n1a.png',
-            width: 30,
-            height: 26,
-          ),
-          label: '',),
-        const BottomNavigationBarItem(icon: Icon(Icons.favorite, size: 30), label: ''),
-        const BottomNavigationBarItem(icon: Icon(Icons.person, size: 30), label: ''),
-
+        _buildNavigationBarItem(
+          imagePath: 'assets/page-1/images/uil-message-YpL.png',
+          index: 1,
+        ),
+        _buildNavigationBarItem(
+          imagePath: 'assets/page-1/images/gg-menu-grid-o-n1a.png',
+          index: 2,
+        ),
+        _buildNavigationBarItem(
+          icon: Icons.favorite,
+          index: 3,
+        ),
+        _buildNavigationBarItem(
+          icon: Icons.person,
+          index: 4,
+        ),
       ],
-
       selectedItemColor: Colors.black,
       unselectedItemColor: Colors.grey,
       type: BottomNavigationBarType.fixed,
       backgroundColor: Colors.white,
+      currentIndex: _selectedIndex,
+      onTap: _onItemTapped,
+    );
+  }
+
+  BottomNavigationBarItem _buildNavigationBarItem({
+    IconData? icon,
+    String? imagePath,
+    required int index,
+  }) {
+    return BottomNavigationBarItem(
+      icon: icon != null
+          ? Icon(
+              icon,
+              size: 30,
+              color: _selectedIndex == index ? Colors.red : Colors.grey,
+            )
+          : Image.asset(
+              imagePath!,
+              width: 30,
+              height: 26,
+              color: _selectedIndex == index ? Colors.red : Colors.grey,
+            ),
+      label: '',
     );
   }
 }
+

@@ -8,7 +8,7 @@ import '../models/user.dart';
 
 class AcceuilPage extends StatefulWidget {
   final User user;
-  const AcceuilPage({Key? key, required this.user}) : super(key: key);
+  const AcceuilPage({Key? key, required this.user, required int selectedIndex}) : super(key: key);
 
   @override
   State<AcceuilPage> createState() => _AcceuilPageState();
@@ -195,7 +195,7 @@ class _AcceuilPageState extends State<AcceuilPage> {
     double ffem = fem * 0.97;
 
     return Scaffold(
-      bottomNavigationBar: const MyBNavBar(),
+      bottomNavigationBar: MyBottomNavigationBar(user: widget.user,selectedIndex: 0),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
