@@ -80,3 +80,45 @@ TextStyle SafeGoogleFont(
     );
   }
 }
+
+
+class MyBNavBar extends StatefulWidget {
+  const MyBNavBar({super.key});
+
+  @override
+  State<MyBNavBar> createState() => _MyBNavBarState();
+}
+
+class _MyBNavBarState extends State<MyBNavBar> {
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      items:  [
+        const BottomNavigationBarItem(icon: Icon(Icons.restaurant_menu,size: 30,), label: ''),
+        BottomNavigationBarItem(
+          icon: Image.asset(
+            'assets/page-1/images/uil-message-YpL.png',
+            width: 30,
+            height: 26,
+          ),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Image.asset(
+            'assets/page-1/images/gg-menu-grid-o-n1a.png',
+            width: 30,
+            height: 26,
+          ),
+          label: '',),
+        const BottomNavigationBarItem(icon: Icon(Icons.favorite, size: 30), label: ''),
+        const BottomNavigationBarItem(icon: Icon(Icons.person, size: 30), label: ''),
+
+      ],
+
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.grey,
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: Colors.white,
+    );
+  }
+}
