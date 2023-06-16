@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
@@ -7,7 +8,8 @@ import '../models/user.dart';
 
 
 class AcceuilPage extends StatefulWidget {
-  const AcceuilPage({Key? key}) : super(key: key);
+  final User user;
+  const AcceuilPage({Key? key, required this.user}) : super(key: key);
 
   @override
   State<AcceuilPage> createState() => _AcceuilPageState();
