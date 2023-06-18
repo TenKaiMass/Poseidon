@@ -51,7 +51,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Positioned buildPositionedText({
+  Positioned buildPositionedUserName({
     required double top,
     required String text,
     required TextStyle style,
@@ -63,21 +63,80 @@ class _ProfilePageState extends State<ProfilePage> {
         width: MediaQuery.of(context).size.width,
         height: 30 * fem,
         // child: Container(
-          // decoration: BoxDecoration(
-          //   borderRadius: BorderRadius.circular(10 * fem),
-          //   border: Border.all(color: Colors.black),
-          // ),
-          child: Center(
-            child: Text(
-              text.isNotEmpty ? text : "",
-              textAlign: TextAlign.center,
-              style: style,
-            ),
+        // decoration: BoxDecoration(
+        //   borderRadius: BorderRadius.circular(10 * fem),
+        //   border: Border.all(color: Colors.black),
+        // ),
+        child: Center(
+          child: Text(
+            text.isNotEmpty ? text : "",
+            textAlign: TextAlign.center,
+            style: style,
+          ),
           // ),
         ),
       ),
     );
   }
+
+  Positioned buildPositionedTextGauche({
+    required double top,
+    required String text,
+    required TextStyle style,
+    required double fem,
+  }) {
+    return Positioned(
+        top: top,
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width / 3,
+          height: 30 * fem,
+          child: Container(
+            // decoration: BoxDecoration(
+            //   borderRadius: BorderRadius.circular(10 * fem),
+            //   border: Border.all(color: Colors.black),
+            // ),
+            child: Center(
+              child: Text(
+                text.isNotEmpty ? text : "",
+                textAlign: TextAlign.center,
+                style: style,
+              ),
+              // ),
+            ),
+          ),
+        ));
+  }
+
+    Positioned buildPositionedTextDroit({
+    required double top,
+    required String text,
+    required TextStyle style,
+    required double fem,
+  }) {
+    return Positioned(
+        top: top,
+        left: MediaQuery.of(context).size.width - MediaQuery.of(context).size.width /3 ,
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width /3 ,
+          height: 30 * fem,
+          child: Container(
+            // decoration: BoxDecoration(
+            //   borderRadius: BorderRadius.circular(10 * fem),
+            //   border: Border.all(color: Colors.black),
+            // ),
+            child: Center(
+              child: Text(
+                text.isNotEmpty ? text : "",
+                textAlign: TextAlign.center,
+                style: style,
+              ),
+              // ),
+            ),
+          ),
+        ));
+  }
+
+
 
   Positioned buildPositionedBio({
     required double top,
@@ -93,23 +152,22 @@ class _ProfilePageState extends State<ProfilePage> {
         height: 100 * fem,
         child: SingleChildScrollView(
           // child: Container(
-            // decoration: BoxDecoration(
-            //   borderRadius: BorderRadius.circular(10 * fem),
-            //   border: Border.all(color: Colors.black),
-            // ),
-            child: Center(
-              child: Text(
-                text.isNotEmpty ? text : "",
-                textAlign: TextAlign.center,
-                style: style,
-              ),
+          // decoration: BoxDecoration(
+          //   borderRadius: BorderRadius.circular(10 * fem),
+          //   border: Border.all(color: Colors.black),
+          // ),
+          child: Center(
+            child: Text(
+              text.isNotEmpty ? text : "",
+              textAlign: TextAlign.center,
+              style: style,
             ),
+          ),
           // ),
         ),
       ),
     );
   }
-
 
   Positioned buildPositionedProfileImage(double fem) {
     return Positioned(
@@ -247,56 +305,52 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Stack(
                     children: [
                       buildPositionedContainer(fem),
-                      // buildPositionedText(
-                      //   left: 37 * fem,
-                      //   top: 230 * fem,
-                      //   text: 'Abonnement',
-                      //   style: TextStyle(
-                      //     fontSize: 14 * ffem,
-                      //     fontWeight: FontWeight.w300,
-                      //     height: 1.5 * ffem / fem,
-                      //     color: Color(0xff000000),
-                      //   ),
-                      //   fem: fem,
-                      // ),
-                      // buildPositionedText(
-                      //   left: 277 * fem,
-                      //   top: 230 * fem,
-                      //   text: 'Abonnées',
-                      //   style: TextStyle(
-                      //     fontSize: 14 * ffem,
-                      //     fontWeight: FontWeight.w300,
-                      //     height: 1.5 * ffem / fem,
-                      //     color: Color(0xff000000),
-                      //   ),
-                      //   fem: fem,
-                      // ),
-                      // buildPositionedText(
-                      //   left: 73 * fem,
-                      //   top: 207 * fem,
-                      //   text: '0',
-                      //   style: TextStyle(
-                      //     fontSize: 14 * ffem,
-                      //     fontWeight: FontWeight.w700,
-                      //     height: 1.5 * ffem / fem,
-                      //     color: Color(0xff000000),
-                      //   ),
-                      //   fem: fem,
-                      // ),
-                      // buildPositionedText(
-                      //   left: 301 * fem,
-                      //   top: 207 * fem,
-                      //   text: '0',
-                      //   style: TextStyle(
-                      //     fontSize: 14 * ffem,
-                      //     fontWeight: FontWeight.w700,
-                      //     height: 1.5 * ffem / fem,
-                      //     color: Color(0xff000000),
-                      //   ),
-                      //   fem: fem,
-                      // ),
+                      buildPositionedTextDroit(
+                        top: 185 * fem,
+                        text: 'Abonnement',
+                        style: TextStyle(
+                          fontSize: 14 * ffem,
+                          fontWeight: FontWeight.w300,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff000000),
+                        ),
+                        fem: fem,
+                      ),
+                      buildPositionedTextGauche(
+                        top: 185 * fem,
+                        text: 'Abonnées',
+                        style: TextStyle(
+                          fontSize: 14 * ffem,
+                          fontWeight: FontWeight.w300,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff000000),
+                        ),
+                        fem: fem,
+                      ),
+                      buildPositionedTextGauche(
+                        top: 170 * fem,
+                        text: '0',
+                        style: TextStyle(
+                          fontSize: 14 * ffem,
+                          fontWeight: FontWeight.w700,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff000000),
+                        ),
+                        fem: fem,
+                      ),
+                      buildPositionedTextDroit(
+                        top: 170 * fem,
+                        text: '0',
+                        style: TextStyle(
+                          fontSize: 14 * ffem,
+                          fontWeight: FontWeight.w700,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff000000),
+                        ),
+                        fem: fem,
+                      ),
                       buildPositionedProfileImage(fem),
-                      buildPositionedText(
+                      buildPositionedUserName(
                         top: 240 * fem,
                         text: '@$username',
                         style: TextStyle(

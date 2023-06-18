@@ -4,52 +4,69 @@ import 'package:flutter/material.dart';
 
 class ProfileCustomizationPage extends StatefulWidget {
   final User user;
-  const ProfileCustomizationPage({Key? key, required this.user})
-      : super(key: key);
+
+  const ProfileCustomizationPage({Key? key, required this.user}) : super(key: key);
 
   @override
-  State<ProfileCustomizationPage> createState() =>
-      _ProfileCustomizationPageState();
+  State<ProfileCustomizationPage> createState() => _ProfileCustomizationPageState();
 }
 
 class _ProfileCustomizationPageState extends State<ProfileCustomizationPage> {
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _bioController = TextEditingController();
-  TextEditingController _locationController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _bioController = TextEditingController();
+  final TextEditingController _locationController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProfileData();
+  }
+
+  Future<void> _loadProfileData() async {
+    try {
+      final snapshot = await FirebaseFirestore.instance.collection('Users').doc(widget.user.uid).get();
+      final data = snapshot.data() as Map<String, dynamic>;
+
+      _usernameController.text = data['username'] ?? '';
+      _bioController.text = data['bio'] ?? '';
+      _locationController.text = data['location'] ?? '';
+    } catch (error) {
+      // Handle error
+    }
+  }
 
   Future<void> _saveProfile() async {
     String username = _usernameController.text.trim();
     String bio = _bioController.text.trim();
     String location = _locationController.text.trim();
 
-    // Save profile data to Firebase Firestore
-    await FirebaseFirestore.instance
-        .collection("Users")
-        .doc(widget.user.uid)
-        .set({
-      'username': username.isEmpty ? '' : username,
-      'bio': bio.isEmpty ? '' : bio,
-      'location': location.isEmpty ? '' : location,
-    });
+    try {
+      await FirebaseFirestore.instance.collection('Users').doc(widget.user.uid).set({
+        'username': username.isEmpty ? '' : username,
+        'bio': bio.isEmpty ? '' : bio,
+        'location': location.isEmpty ? '' : location,
+      });
 
-    // Show a success message or navigate to another screen
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('profile'),
-          content: const Text('Votre profile a correctement été mis à jour.'),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Profile'),
+            content: const Text('Votre profil a été mis à jour avec succès.'),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    } catch (error) {
+      // Handle error
+    }
   }
 
   @override
@@ -64,7 +81,7 @@ class _ProfileCustomizationPageState extends State<ProfileCustomizationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile Customization'),
+        title: const Text('Profile Customization'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -72,26 +89,26 @@ class _ProfileCustomizationPageState extends State<ProfileCustomizationPage> {
           children: [
             TextField(
               controller: _usernameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Username',
               ),
             ),
             TextField(
               controller: _bioController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Bio',
               ),
             ),
             TextField(
               controller: _locationController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Location',
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _saveProfile,
-              child: Text('sauvegarder'),
+              child: const Text('Sauvegarder'),
             ),
           ],
         ),
