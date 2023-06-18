@@ -6,6 +6,7 @@ import 'package:myapp/utils.dart';
 
 import '../models/user.dart';
 import '../widget.dart';
+import 'GestionnaireLoginPage.dart';
 
 class AcceuilPage extends StatefulWidget {
   final User user;
@@ -110,6 +111,12 @@ class _AcceuilPageState extends State<AcceuilPage> {
           child: GestureDetector(
             onTap: () {
               FirebaseAuth.instance.signOut();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        SceneLog()),
+              );
             },
             child: Icon(
               Icons.logout,
