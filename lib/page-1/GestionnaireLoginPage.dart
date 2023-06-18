@@ -24,7 +24,8 @@ class _SceneLogState extends State<SceneLog> {
       stream: auth.authStateChanges,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return  AcceuilPage(user: auth.currentUser!, selectedIndex: 0);
+          
+          return  AcceuilPage(user: snapshot.data!, selectedIndex: 0);
         } else {
           return const LoginPage();
         }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,6 +40,7 @@ class _LoginPageState extends State<LoginPage> {
         errorMessage = e.message;
       });
     }
+    // ignore: use_build_context_synchronously
     Navigator.pop(context);
   }
 
@@ -53,6 +55,14 @@ class _LoginPageState extends State<LoginPage> {
         errorMessage = e.message;
       });
     }
+      await FirebaseFirestore.instance
+      .collection("Users")
+      .doc(Auth(auth: FirebaseAuth.instance).currentUser?.uid)
+      .set({
+    'username': Auth(auth: FirebaseAuth.instance).currentUser?.email,
+    'bio': "",
+    'location': "",
+    });
   }
 
   Widget _Logo() {

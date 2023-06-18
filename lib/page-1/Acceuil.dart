@@ -9,15 +9,14 @@ import '../widget.dart';
 
 class AcceuilPage extends StatefulWidget {
   final User user;
-  const AcceuilPage({Key? key, required this.user, required int selectedIndex}) : super(key: key);
+  const AcceuilPage({Key? key, required this.user, required int selectedIndex})
+      : super(key: key);
 
   @override
   State<AcceuilPage> createState() => _AcceuilPageState();
 }
 
 class _AcceuilPageState extends State<AcceuilPage> {
-
-
   Widget buildFeedContainer(BuildContext context, double fem, double ffem) {
     return Positioned(
       left: getRelativeSize(context, 1),
@@ -40,7 +39,8 @@ class _AcceuilPageState extends State<AcceuilPage> {
             ),
             child: Container(
               alignment: AlignmentDirectional.center,
-              child: Text('Pas de contenu disponible pour le moment',
+              child: Text(
+                'Pas de contenu disponible pour le moment',
                 style: SafeGoogleFont(
                   'Comic Sans MS',
                   fontSize: getRelativeSize(context, 14 * ffem),
@@ -55,10 +55,6 @@ class _AcceuilPageState extends State<AcceuilPage> {
       ),
     );
   }
-
-     
-
-
 
   Widget buildNotificationIcon(BuildContext context, double fem) {
     return Positioned(
@@ -115,12 +111,10 @@ class _AcceuilPageState extends State<AcceuilPage> {
             onTap: () {
               FirebaseAuth.instance.signOut();
             },
-            child: Container(
-              child: Icon(
-                Icons.logout,
-                size: getRelativeSize(context, 28),
-                color: Colors.black,
-              ),
+            child: Icon(
+              Icons.logout,
+              size: getRelativeSize(context, 28),
+              color: Colors.blue,
             ),
           ),
         ),
@@ -132,9 +126,9 @@ class _AcceuilPageState extends State<AcceuilPage> {
   Widget build(BuildContext context) {
     double fem = MediaQuery.of(context).size.width / 393;
     double ffem = fem * 0.97;
-
     return Scaffold(
-      bottomNavigationBar: MyBottomNavigationBar(user: widget.user,selectedIndex: 0),
+      bottomNavigationBar:
+          MyBottomNavigationBar(user: widget.user, selectedIndex: 0),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -148,7 +142,7 @@ class _AcceuilPageState extends State<AcceuilPage> {
         child: Stack(
           children: [
             buildFeedContainer(context, fem, ffem),
-            buildSeparatorBar(context, fem,224),
+            buildSeparatorBar(context, fem, 224),
             buildFreePlanContainer(context, fem, ffem),
             buildNotificationIcon(context, fem),
             buildAddFriendsIcon(context, fem),
