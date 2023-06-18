@@ -87,8 +87,6 @@ TextStyle SafeGoogleFont(
   }
 }
 
-
-
 class MyBottomNavigationBar extends StatefulWidget {
   final User user;
   final int selectedIndex;
@@ -198,4 +196,5 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
     );
   }
 }
+
 
