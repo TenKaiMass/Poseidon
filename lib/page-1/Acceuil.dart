@@ -5,22 +5,19 @@ import 'dart:ui';
 import 'package:myapp/utils.dart';
 
 import '../models/user.dart';
+import '../widget.dart';
+import 'GestionnaireLoginPage.dart';
 
 class AcceuilPage extends StatefulWidget {
   final User user;
-  const AcceuilPage({Key? key, required this.user}) : super(key: key);
+  const AcceuilPage({Key? key, required this.user, required int selectedIndex})
+      : super(key: key);
 
   @override
   State<AcceuilPage> createState() => _AcceuilPageState();
 }
 
 class _AcceuilPageState extends State<AcceuilPage> {
-  double getRelativeSize(BuildContext context, double baseSize) {
-    double baseWidth = 393;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
-    return baseSize * fem;
-  }
-
   Widget buildFeedContainer(BuildContext context, double fem, double ffem) {
     return Positioned(
       left: getRelativeSize(context, 1),
@@ -43,7 +40,8 @@ class _AcceuilPageState extends State<AcceuilPage> {
             ),
             child: Container(
               alignment: AlignmentDirectional.center,
-              child: Text('Pas de contenu disponible pour le moment',
+              child: Text(
+                'Pas de contenu disponible pour le moment',
                 style: SafeGoogleFont(
                   'Comic Sans MS',
                   fontSize: getRelativeSize(context, 14 * ffem),
@@ -53,68 +51,6 @@ class _AcceuilPageState extends State<AcceuilPage> {
                 ),
               ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildSeparatorBar(BuildContext context, double fem) {
-    return Positioned(
-      left: getRelativeSize(context, 39),
-      top: getRelativeSize(context, 224),
-      child: Align(
-        child: SizedBox(
-          width: getRelativeSize(context, 315),
-          height: getRelativeSize(context, 4),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(getRelativeSize(context, 25)),
-              color: const Color.fromARGB(94, 0, 0, 0),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildFreePlanContainer(BuildContext context, double fem, double ffem) {
-    return Positioned(
-      left: MediaQuery.of(context).size.width / 2 - (95 * fem) / 2,
-      top: 70,
-      child: Container(
-        width: getRelativeSize(context, 95),
-        height: getRelativeSize(context, 27),
-        decoration: BoxDecoration(
-          border: Border.all(color: const Color(0xff000000)),
-          color: const Color(0xffffffff),
-          borderRadius: BorderRadius.circular(getRelativeSize(context, 21)),
-        ),
-        child: Container(
-          alignment: AlignmentDirectional.bottomEnd,
-          padding: EdgeInsets.fromLTRB(0, 0, getRelativeSize(context, 8.39), 0),
-          width: double.infinity,
-          height: double.infinity,
-          child: Row(
-            children: [
-              Container(
-                margin: EdgeInsets.fromLTRB(
-                    getRelativeSize(context, 10),
-                    getRelativeSize(context, 3),
-                    getRelativeSize(context, 16.39),
-                    getRelativeSize(context, 6)),
-                child: Text(
-                  'Free',
-                  style: SafeGoogleFont(
-                    'Comic Sans MS',
-                    fontSize: getRelativeSize(context, 14 * ffem),
-                    fontWeight: FontWeight.w700,
-                    height: 1.2575 * ffem / fem,
-                    color: const Color.fromARGB(255, 55, 54, 54),
-                  ),
-                ),
-              ),
-            ],
           ),
         ),
       ),
@@ -175,13 +111,17 @@ class _AcceuilPageState extends State<AcceuilPage> {
           child: GestureDetector(
             onTap: () {
               FirebaseAuth.instance.signOut();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        SceneLog()),
+              );
             },
-            child: Container(
-              child: Icon(
-                Icons.logout,
-                size: getRelativeSize(context, 28),
-                color: Colors.black,
-              ),
+            child: Icon(
+              Icons.logout,
+              size: getRelativeSize(context, 28),
+              color: Colors.blue,
             ),
           ),
         ),
@@ -193,9 +133,9 @@ class _AcceuilPageState extends State<AcceuilPage> {
   Widget build(BuildContext context) {
     double fem = MediaQuery.of(context).size.width / 393;
     double ffem = fem * 0.97;
-
     return Scaffold(
-      bottomNavigationBar: const MyBNavBar(),
+      bottomNavigationBar:
+          MyBottomNavigationBar(user: widget.user, selectedIndex: 0),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -209,7 +149,7 @@ class _AcceuilPageState extends State<AcceuilPage> {
         child: Stack(
           children: [
             buildFeedContainer(context, fem, ffem),
-            buildSeparatorBar(context, fem),
+            buildSeparatorBar(context, fem, 224),
             buildFreePlanContainer(context, fem, ffem),
             buildNotificationIcon(context, fem),
             buildAddFriendsIcon(context, fem),

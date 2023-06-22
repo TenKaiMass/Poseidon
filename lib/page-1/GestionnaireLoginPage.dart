@@ -13,7 +13,7 @@ class SceneLog extends StatefulWidget {
   const SceneLog({Key? key}) : super(key: key);
 
   @override
-  _SceneLogState createState() => _SceneLogState();
+  State<SceneLog> createState() => _SceneLogState();
 }
 
 class _SceneLogState extends State<SceneLog> {
@@ -24,7 +24,7 @@ class _SceneLogState extends State<SceneLog> {
       stream: auth.authStateChanges,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return  AcceuilPage(user: auth.currentUser!,);
+          return AcceuilPage(user: snapshot.data!, selectedIndex: 0);
         } else {
           return const LoginPage();
         }
