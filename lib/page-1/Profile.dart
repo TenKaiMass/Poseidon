@@ -329,8 +329,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       buildPositionedTextGauche(
                         top: 170 * fem,
-                        text: '0',
-                        style: TextStyle(
+                        text: '0  ',
+                         style: TextStyle(
                           fontSize: 14 * ffem,
                           fontWeight: FontWeight.w700,
                           height: 1.5 * ffem / fem,

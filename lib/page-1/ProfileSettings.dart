@@ -99,12 +99,12 @@ class _ProfileCustomizationPageState extends State<ProfileCustomizationPage> {
                 labelText: 'Bio',
               ),
             ),
-            TextField(
-              controller: _locationController,
-              decoration: const InputDecoration(
-                labelText: 'Location',
-              ),
-            ),
+            // TextField(
+            //   controller: _locationController,
+            //   decoration: const InputDecoration(
+            //     labelText: 'Location',
+            //   ),
+            // ),
             const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _saveProfile,
