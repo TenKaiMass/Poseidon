@@ -4,37 +4,21 @@ Bienvenue dans l'application Poseidon ! Poseidon est une application conviviale 
 
 ## Fonctionnalités Disponibles pour le moment
 
-<img src="assets/login.png" 
-width="300"
-height="600">
 
-- **Création de profil et réseau social** : Créez votre profil d'utilisateur via votre adresse mail et un mot de passe de plus de 6 caractères.
+- **Création de profil et réseau social** : Créez votre profil d'utilisateur via votre adresse mail et un mot de passe de plus de 6 caractères. Les images ci-dessous montrent les étapes de la création de profil.
 
-<img src="assets/errorLog.png" 
-width="300"
-height="600">
+<img src="assets/login.png" width="300" height="600"> <img src="assets/errorLog.png" width="300" height="600">
+
 > faite attention a mettre une adresse valide
 
-<img src="assets/Acceuil.png" 
-width="300"
-height="600">
-La barre de navigation permet de d'aller sur les différent onglets (Feed,Dm,explore,collections et profile)
+- **Modification profile utilisateur** : Par defaut lors de la creation de votre compte c'est votre adresse mail qui fait offcie de pseudo, vous avez la possibilité de modifier votre pseudo et votre bio. Pour modifier appuyer sur "Modifier". Les images ci-dessous montrent les étapes de la modification de profil.
 
-> Pour le moment seul l'onglet profile et Acceuil/Feed est implementé
+<img src="assets/Profile.png" width="300" height="600"> <img src="assets/Settings.png" width="300" height="600">
 
-<img src="assets/Profile.png" 
-width="300"
-height="600">
+La barre de navigation permet de d'aller sur les différent onglets (Feed,Dm,explore,collections et profile). Pour le moment seul l'onglet profile et Acceuil/Feed est implementé.
 
+<img src="assets/Acceuil.png" width="300" height="600">
 
-- **Modification profile utilisateur** : Par defaut lors de la creation de votre compte c'est votre adresse mail qui fait offcie de pseudo, vous avez la possibilité de modifier votre pseudo et votre bio. 
-
-> Pour modifier appuyer sur "Modifier"
-
-
-<img src="assets/Settings.png" 
-width="300"
-height="600">
 
 
 
@@ -59,3 +43,4 @@ A noter que l'application étant en cours de devellopement, seul la compatibilit
 - **Interactions sociales** : Commentez les recettes, partagez vos impressions et échangez des astuces culinaires avec d'autres utilisateurs. Suivez les profils des utilisateurs dont vous aimez les recettes et recevez des notifications sur leurs nouvelles publications.
 - **Favoris et collections** : Enregistrez vos recettes préférées dans vos favoris et créez des collections personnalisées pour organiser vos recettes en fonction de vos besoins et de vos intérêts.
 - **abonnement a des compte professionnels** : Permettre d'obtenir du contenu professionnel pour avoir des plats d'une qualité prenium, avec toute les astuces disponible par le profesionnel avec la possibilité d'échangé avec.
+
