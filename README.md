@@ -11,7 +11,8 @@ Bienvenue dans l'application Poseidon ! Poseidon est une application conviviale 
 
 > faite attention a mettre une adresse valide
 
-- **Modification profile utilisateur** : Par defaut lors de la creation de votre compte c'est votre adresse mail qui fait offcie de pseudo, vous avez la possibilité de modifier votre pseudo et votre bio. Pour modifier appuyer sur "Modifier". Les images ci-dessous montrent les étapes de la modification de profil.
+- **Modification profile utilisateur** : Par defaut lors de la creation de votre compte c'est votre adresse mail qui fait offcie de pseudo, vous avez la  
+ possibilité de modifier votre pseudo et votre bio. Pour modifier appuyer sur "Modifier". Les images ci-dessous montrent les étapes de la modification de profil.
 
 <img src="assets/Profile.png" width="300" height="600"> <img src="assets/Settings.png" width="300" height="600">
 
