@@ -43,4 +43,4 @@ A noter que l'application étant en cours de devellopement, seul la compatibilit
 - **Interactions sociales** : Commentez les recettes, partagez vos impressions et échangez des astuces culinaires avec d'autres utilisateurs. Suivez les profils des utilisateurs dont vous aimez les recettes et recevez des notifications sur leurs nouvelles publications.
 - **Favoris et collections** : Enregistrez vos recettes préférées dans vos favoris et créez des collections personnalisées pour organiser vos recettes en fonction de vos besoins et de vos intérêts.
 - **abonnement a des compte professionnels** : Permettre d'obtenir du contenu professionnel pour avoir des plats d'une qualité prenium, avec toute les astuces disponible par le profesionnel avec la possibilité d'échangé avec.
-
+ 
